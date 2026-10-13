@@ -8,7 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&display=swap">
 <style>
-/* Layout: a study notebook. Sticky tab bar; each tab is one section (course map, grammar, verbs, phrases, vocabulary, worksheets). Same family as the verb sheets: Young Serif + Figtree, bordeaux ink. */
+/* Layout: a study notebook. Sticky tab bar; each tab is one section (course map, grammar, verbs, phrases, vocabulary, worksheets). Young Serif + Figtree, bordeaux ink.
+   Language rule: every heading/label = French term + English underneath (.enl / <small>). Explanations, instructions, buttons = English. */
 :root{
   --bg:#f8f5f6; --surface:#ffffff; --fg:#241519; --muted:#6e5a61; --line:#e6dbdf;
   --accent:#8a2846; --accent-soft:#f6e4ea; --irr:#a35f00;
@@ -28,40 +29,50 @@
 body{margin:0}
 body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.5}
 .bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
-.bar .in{max-width:1080px;margin:0 auto;padding-inline:16px;padding-block:10px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.bar .in{max-width:1080px;margin:0 auto;padding-inline:16px;padding-block:8px;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
 .bar .in::-webkit-scrollbar{display:none}
-.tab{flex:none;border:0;background:none;color:var(--muted);font:600 14px var(--body);padding:7px 12px;border-radius:8px;cursor:pointer}
+.tab{flex:none;border:0;background:none;color:var(--muted);font:600 14px/1.2 var(--body);padding:6px 12px;border-radius:8px;cursor:pointer;text-align:left}
+.tab small{display:block;font-size:11px;font-weight:500;opacity:.8}
 .tab[aria-selected="true"]{background:var(--accent);color:var(--bg)}
 .wrap{max-width:1080px;margin:0 auto;padding-inline:16px;padding-block:24px 56px;display:grid;gap:20px}
 h1,h2{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance}
 h1{font-size:clamp(28px,6vw,40px);line-height:1.1}
 h2{font-size:26px;color:var(--accent)}
 h3{margin:0;font-size:16px}
-.lede{margin:6px 0 0;color:var(--muted);max-width:64ch}
+.h1en{margin:4px 0 0;font-size:13px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.lede{margin:8px 0 0;color:var(--muted);max-width:64ch}
 .eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.enl{display:block;font-size:12.5px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--muted);margin-top:1px}
+.inline-en{font-weight:500;color:var(--muted);text-transform:none;letter-spacing:0}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{border:1px solid var(--line);background:var(--surface);color:var(--fg);font:500 14px var(--body);padding:6px 12px;border-radius:8px;cursor:pointer}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--fg);font:500 14px/1.25 var(--body);padding:6px 12px;border-radius:8px;cursor:pointer;text-align:left}
+.chip small{display:block;font-size:11.5px;color:var(--muted)}
 .chip.irr{color:var(--irr)}
 .chip[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
 button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:12px}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;min-width:0}
-.card h3{color:var(--accent);font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.card h3{color:var(--accent);font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.card.wide{grid-column:1/-1}
 .tag{display:inline-block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;padding:2px 7px;border-radius:5px;background:var(--accent-soft);color:var(--accent)}
 .tag.irr{color:var(--irr)}
 .tag.muted{background:none;border:1px solid var(--line);color:var(--muted)}
 table{border-collapse:collapse;width:100%}
 td,th{padding:6px 0;border-top:1px solid var(--line);vertical-align:baseline;text-align:left}
-th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;padding-right:10px;vertical-align:bottom}
+th small,td.p small{display:block;font-size:11px;letter-spacing:0;text-transform:none;font-weight:500;color:var(--muted)}
 td.p{color:var(--muted);font-size:13px;width:34%;padding-right:8px}
-td.f{font-weight:600}
-td.en{color:var(--muted);font-size:13.5px;padding-left:10px}
+td.rl{color:var(--fg);font-size:13px;font-weight:600;padding-right:8px}
+td.rl small{display:block;font-size:11px;font-weight:500;color:var(--muted)}
+td.f{font-weight:600;padding-right:10px}
+td.en{color:var(--muted);font-size:13.5px}
 .fr{font-weight:600}
+.tr{display:block;color:var(--muted);font-size:13.5px}
 .scroll{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:10px}
 .wide{min-width:900px}
 .wide th,.wide td{padding:8px 12px;white-space:nowrap}
 .wide td:first-child{font-family:var(--display);color:var(--accent);font-size:16px}
-ul.ex{margin:8px 0 0;padding-left:18px;display:grid;gap:4px}
+ul.ex{margin:8px 0 0;padding-left:18px;display:grid;gap:6px}
 ul.ex li::marker{color:var(--accent)}
 .note{font-size:13.5px;color:var(--muted);border-left:2px solid var(--accent);padding-left:10px;margin-top:10px}
 .toggle{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--surface);width:max-content}
@@ -74,17 +85,21 @@ ul.ex li::marker{color:var(--accent)}
 .unit .n{font-family:var(--display);font-size:34px;line-height:1;color:var(--accent)}
 .unit .t{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
 .unit .t h3{font-family:var(--display);font-weight:400;font-size:20px}
+.unit .t .ten{font-size:13.5px;color:var(--muted)}
 .unit .pg{font-size:12.5px;color:var(--muted)}
-.unit .rows{display:grid;gap:3px;margin-top:6px;font-size:13.5px}
-.unit .rows b{color:var(--muted);font-weight:600;font-size:11px;letter-spacing:.06em;text-transform:uppercase;margin-right:6px}
+.unit .rows{display:grid;gap:5px;margin-top:6px;font-size:13.5px}
+.unit .rows b{color:var(--muted);font-weight:700;font-size:11px;letter-spacing:.06em;text-transform:uppercase;margin-right:6px}
+.unit .rows b span{font-weight:500;text-transform:none;letter-spacing:0}
+.unit .rows i{font-style:normal;color:var(--muted)}
 .unit .links{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .linkbtn{border:1px solid var(--accent);background:none;color:var(--accent);font:600 13px var(--body);padding:4px 10px;border-radius:7px;cursor:pointer}
 .setnow{border:0;background:none;color:var(--muted);font:500 12.5px var(--body);text-decoration:underline;cursor:pointer;padding:0}
 /* worksheets */
 .sheet{display:grid;gap:14px}
 .exo{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:grid;gap:10px;min-width:0}
-.exo .hd{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
+.exo .hd{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;justify-content:space-between}
 .exo .hd h3{font-size:16px}
+.exo .hd h3 .enl{font-size:13px}
 .exo .hd .ref{font-size:12.5px;color:var(--muted)}
 .exo .instr{margin:0;color:var(--muted);font-size:14px}
 .items{display:grid;gap:8px;margin:0;padding:0;list-style:none;counter-reset:it}
@@ -109,10 +124,9 @@ textarea{width:100%;min-height:120px;font:15px/1.5 var(--body);color:var(--fg);b
 .actions{display:flex;flex-wrap:wrap;gap:8px}
 .btn{border:1px solid var(--accent);background:var(--accent);color:var(--bg);font:600 13.5px var(--body);padding:7px 14px;border-radius:8px;cursor:pointer}
 .btn.ghost{background:none;color:var(--accent)}
-.status{font-size:13px;color:var(--muted)}
 .wordbank{display:flex;flex-wrap:wrap;gap:6px}
 .wordbank span{border:1px dashed var(--line);border-radius:6px;padding:2px 8px;font-size:13.5px;font-weight:600}
-.cols2{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:4px 18px}
+.cols2{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:0 18px}
 @media (prefers-reduced-motion:no-preference){.exo{transition:border-color .2s}}
 </style>
 </head>
@@ -122,98 +136,106 @@ textarea{width:100%;min-height:120px;font:15px/1.5 var(--body);color:var(--fg);b
 <main class="wrap" id="view"></main>
 
 <script>
+/* bilingual helpers: French label with English underneath */
+const TH=(fr,en)=>`<th>${fr}<small>${en}</small></th>`;
+const RL=(fr,en)=>`<td class="rl">${fr}<small>${en}</small></td>`;
+const EX=(fr,en)=>`<li><span class="fr">${fr}</span><span class="tr">${en}</span></li>`;
+
 /* ---------- course map (from Édito A1, tableau des contenus) ---------- */
 const UNITS=[
- {n:0,t:"Bienvenue !",p:11,g:["Les pronoms (je, tu… moi, toi, vous)","Tu ou vous"],v:["Salutations","L'alphabet","Les nombres 0 à 31","Les jours et les mois","Dans la classe"],verbs:[],sheet:"f0",gr:["pronoms","tuvous","negation"],ph:["saluer","cava","classe","date"],vo:["n0","jours","mois"]},
- {n:1,t:"Je suis…",p:17,g:["Les adjectifs de nationalité","Les articles définis le, la, l', les","Les prépositions devant les villes et pays (1)","L'adjectif interrogatif quel"],v:["Les loisirs (1)","Les nombres 32 à 100","Les pays et nationalités","L'identité, les coordonnées"],verbs:["avoir","s'appeler","être","parler"],sheet:"f1",gr:["nationalite","articles","prepositions","quel"],ph:["presenter","coordonnees"],vo:["n32","n70","pays","loisirs","identite"]},
- {n:2,t:"Près de moi",p:31,g:["Articles définis et indéfinis","Les verbes en -er au présent (aimer, détester)","Les adjectifs possessifs","Masculin et féminin des professions"],v:["Les lieux","Les loisirs (2)","La famille","Les professions"],verbs:["habiter","aimer"]},
- {n:3,t:"Qu'est-ce qu'on mange ?",p:45,g:["Singulier et pluriel des noms","Les prépositions de lieu (1)","Les partitifs, un peu de, beaucoup de, pas de","Les verbes en -ir (choisir, finir)"],v:["Les commerces, les aliments","Les quantités, le paiement","Les repas, les boissons"],verbs:["acheter","payer","aller","manger","faire","finir"]},
- {n:4,t:"C'est où ?",p:59,g:["C'est un(e) / Il, elle est","La fréquence (jamais, souvent, toujours)","L'impératif","Les connecteurs (pour, parce que, mais…)"],v:["La ville, les monuments","Les transports","Les nombres 100 à 1 milliard"],verbs:["prendre"]},
- {n:5,t:"C'est tendance !",p:73,g:["Genre et nombre des adjectifs","La place des adjectifs","L'adjectif démonstratif"],v:["Les vêtements, les couleurs","La météo","Les objets du quotidien"],verbs:["vendre","mettre","venir"]},
- {n:6,t:"Qu'est-ce qu'on fait aujourd'hui ?",p:87,g:["Les verbes pronominaux","La fréquence (2)","Le passé récent","Les verbes en -ir (2) partir, sortir, dormir"],v:["L'heure","Les activités quotidiennes","Les sorties","Description physique, caractère"],verbs:["pouvoir","vouloir","partir"]},
- {n:7,t:"Chez moi !",p:101,g:["Le passé composé (1) avec avoir","Les prépositions de lieu (2)","L'obligation et l'interdiction (1)","Les pronoms COD le, la, l', les"],v:["Le logement, les pièces, les meubles","L'immeuble, les réparations"],verbs:["connaître"]},
- {n:8,t:"En forme !",p:115,g:["Le passé composé (2) avec être","Le pronom y","L'obligation (2) devoir","Le conseil"],v:["Le corps et la santé","Le sport, l'alimentation"],verbs:["devoir"]},
- {n:9,t:"Bonnes vacances !",p:129,g:["La comparaison","Les prépositions de villes et pays (2)","Le passé composé (3)","L'imparfait (c'était, il y avait, il faisait)"],v:["Les vacances, l'hébergement","La nature"],verbs:[]},
- {n:10,t:"Au travail !",p:143,g:["Les pronoms COD (2)","La durée","Les pronoms relatifs qui et que","L'intensité"],v:["L'université, les études","L'entreprise, la vie professionnelle"],verbs:[]}
+ {n:0,t:"Bienvenue !",en:"Welcome!",p:11,g:[["Les pronoms (je, tu… moi, toi, vous)","pronouns"],["Tu ou vous","informal or formal you"]],v:[["Les salutations","greetings"],["L'alphabet","the alphabet"],["Les nombres 0 à 31","numbers 0 to 31"],["Les jours et les mois","days and months"],["Dans la classe","in class"]],verbs:[],sheet:"f0",gr:1,ph:1,vo:1},
+ {n:1,t:"Je suis…",en:"I am…",p:17,g:[["Les adjectifs de nationalité","nationality adjectives"],["Les articles définis le, la, l', les","the definite articles"],["Les prépositions devant les villes et pays (1)","prepositions with places"],["L'adjectif interrogatif quel","which, what"]],v:[["Les loisirs (1)","hobbies"],["Les nombres 32 à 100","numbers 32 to 100"],["Les pays et nationalités","countries and nationalities"],["L'identité, les coordonnées","identity, contact details"]],verbs:["avoir","s'appeler","être","parler"],sheet:"f1",gr:1,ph:1,vo:1},
+ {n:2,t:"Près de moi",en:"Close to me",p:31,g:[["Articles définis et indéfinis","definite and indefinite articles"],["Les verbes en -er au présent","-er verbs in the present"],["Les adjectifs possessifs","my, your, his…"],["Masculin et féminin des professions","male and female job titles"]],v:[["Les lieux","places"],["Les loisirs (2)","hobbies"],["La famille","family"],["Les professions","jobs"]],verbs:["habiter","aimer"]},
+ {n:3,t:"Qu'est-ce qu'on mange ?",en:"What are we eating?",p:45,g:[["Singulier et pluriel des noms","singular and plural nouns"],["Les prépositions de lieu (1)","prepositions of place"],["Les partitifs, un peu de, beaucoup de, pas de","some, a little, a lot, none"],["Les verbes en -ir (choisir, finir)","-ir verbs"]],v:[["Les commerces, les aliments","shops, food"],["Les quantités, le paiement","quantities, paying"],["Les repas, les boissons","meals, drinks"]],verbs:["acheter","payer","aller","manger","faire","finir"]},
+ {n:4,t:"C'est où ?",en:"Where is it?",p:59,g:[["C'est un(e) / Il, elle est","it's a / he, she is"],["La fréquence (jamais, souvent, toujours)","how often"],["L'impératif","commands"],["Les connecteurs (pour, parce que, mais…)","linking words"]],v:[["La ville, les monuments","the city, landmarks"],["Les transports","transport"],["Les nombres 100 à 1 milliard","numbers 100 to a billion"]],verbs:["prendre"]},
+ {n:5,t:"C'est tendance !",en:"It's trendy!",p:73,g:[["Genre et nombre des adjectifs","adjective agreement"],["La place des adjectifs","where adjectives go"],["L'adjectif démonstratif","this, that"]],v:[["Les vêtements, les couleurs","clothes, colours"],["La météo","the weather"],["Les objets du quotidien","everyday objects"]],verbs:["vendre","mettre","venir"]},
+ {n:6,t:"Qu'est-ce qu'on fait aujourd'hui ?",en:"What are we doing today?",p:87,g:[["Les verbes pronominaux","reflexive verbs"],["La fréquence (2)","how often (2)"],["Le passé récent","have just done"],["Les verbes en -ir (2) partir, sortir, dormir","-ir verbs (2)"]],v:[["L'heure","telling the time"],["Les activités quotidiennes","daily routine"],["Les sorties","going out"],["Description physique, caractère","describing people"]],verbs:["pouvoir","vouloir","partir"]},
+ {n:7,t:"Chez moi !",en:"At home!",p:101,g:[["Le passé composé (1) avec avoir","the past with avoir"],["Les prépositions de lieu (2)","prepositions of place (2)"],["L'obligation et l'interdiction (1)","must, must not"],["Les pronoms COD le, la, l', les","object pronouns"]],v:[["Le logement, les pièces, les meubles","home, rooms, furniture"],["L'immeuble, les réparations","the building, repairs"]],verbs:["connaître"]},
+ {n:8,t:"En forme !",en:"Fit and well!",p:115,g:[["Le passé composé (2) avec être","the past with être"],["Le pronom y","the pronoun y (there)"],["L'obligation (2) devoir","must: devoir"],["Le conseil","giving advice"]],v:[["Le corps et la santé","the body and health"],["Le sport, l'alimentation","sport and diet"]],verbs:["devoir"]},
+ {n:9,t:"Bonnes vacances !",en:"Happy holidays!",p:129,g:[["La comparaison","comparing"],["Les prépositions de villes et pays (2)","prepositions with places (2)"],["Le passé composé (3)","the past (3)"],["L'imparfait (c'était, il y avait, il faisait)","the imperfect"]],v:[["Les vacances, l'hébergement","holidays, accommodation"],["La nature","nature"]],verbs:[]},
+ {n:10,t:"Au travail !",en:"At work!",p:143,g:[["Les pronoms COD (2)","object pronouns (2)"],["La durée","how long"],["Les pronoms relatifs qui et que","who, which, that"],["L'intensité","very, too, really"]],v:[["L'université, les études","university, studies"],["L'entreprise, la vie professionnelle","the company, working life"]],verbs:[]}
 ];
 
 /* ---------- grammar ---------- */
 const GR=[
- {id:"pronoms",u:0,t:"Les pronoms sujets et toniques",
-  h:`<table><tr><th>Sujet</th><th>Tonique</th><th></th></tr>
-  <tr><td class="f">je (j')</td><td class="f">moi</td><td class="en">I / me</td></tr>
+ {id:"pronoms",u:0,t:"Les pronoms sujets et toniques",en:"Subject and stressed pronouns",
+  h:`<table><tr>${TH("Sujet","subject")}${TH("Tonique","stressed")}${TH("Sens","meaning")}</tr>
+  <tr><td class="f">je (j')</td><td class="f">moi</td><td class="en">I, me</td></tr>
   <tr><td class="f">tu</td><td class="f">toi</td><td class="en">you (informal)</td></tr>
   <tr><td class="f">il / elle / on</td><td class="f">lui / elle</td><td class="en">he / she / we</td></tr>
   <tr><td class="f">nous</td><td class="f">nous</td><td class="en">we</td></tr>
   <tr><td class="f">vous</td><td class="f">vous</td><td class="en">you (plural or polite)</td></tr>
   <tr><td class="f">ils / elles</td><td class="f">eux / elles</td><td class="en">they</td></tr></table>
-  <p class="note">A French verb always needs its subject pronoun. The tonic form adds emphasis or stands alone: <i>Moi, je…</i>, <i>Et toi ?</i></p>
-  <ul class="ex"><li><span class="fr">Moi, je m'appelle Chefen. Et toi ?</span></li><li><span class="fr">Bonjour monsieur, et vous ?</span></li></ul>`},
- {id:"tuvous",u:0,t:"Tu ou vous ?",
-  h:`<p><b>tu</b> for family, friends, children, and people your age in casual settings.<br><b>vous</b> for someone you don't know, to be polite, at work with clients, and for any group.</p>
-  <ul class="ex"><li><span class="fr">Salut Léa, tu vas bien ?</span></li><li><span class="fr">Bonjour madame, vous allez bien ?</span></li></ul>
-  <p class="note">When in doubt, use <i>vous</i>. The other person will tell you if <i>tu</i> is fine: <i>On peut se tutoyer ?</i></p>`},
- {id:"negation",u:0,t:"La négation ne… pas",lv:"preview",
-  h:`<p><b>ne</b> before the verb, <b>pas</b> after it. <b>ne</b> becomes <b>n'</b> before a vowel.</p>
-  <ul class="ex"><li><span class="fr">Je ne comprends pas.</span> I don't understand.</li><li><span class="fr">Je n'aime pas le sport.</span></li><li><span class="fr">Elle n'est pas française.</span></li></ul>
+  <p class="note">A French verb always needs its subject pronoun. The stressed form adds emphasis or stands alone: <i>Moi, je…</i>, <i>Et toi ?</i></p>
+  <ul class="ex">${EX("Moi, je m'appelle Chefen. Et toi ?","My name's Chefen. And you?")}${EX("Bonjour monsieur, et vous ?","Hello sir, and you?")}</ul>`},
+ {id:"tuvous",u:0,t:"Tu ou vous ?",en:"Informal or formal you",
+  h:`<table><tr>${TH("Pronom","pronoun")}${TH("Pour qui","who it's for")}</tr>
+  <tr><td class="f">tu</td><td class="en">family, friends, children, people your age in casual settings</td></tr>
+  <tr><td class="f">vous</td><td class="en">someone you don't know, being polite, clients at work, and any group</td></tr></table>
+  <ul class="ex">${EX("Salut Léa, tu vas bien ?","Hi Léa, are you well?")}${EX("Bonjour madame, vous allez bien ?","Hello madam, are you well?")}</ul>
+  <p class="note">When in doubt, use <i>vous</i>. The other person will tell you if <i>tu</i> is fine: <i>On peut se tutoyer ?</i> (Shall we use tu?)</p>`},
+ {id:"negation",u:0,t:"La négation ne… pas",en:"Saying not",lv:1,
+  h:`<p><b>ne</b> goes before the verb and <b>pas</b> after it. <b>ne</b> becomes <b>n'</b> before a vowel.</p>
+  <ul class="ex">${EX("Je ne comprends pas.","I don't understand.")}${EX("Je n'aime pas le sport.","I don't like sport.")}${EX("Elle n'est pas française.","She isn't French.")}</ul>
   <p class="note">In speech the <i>ne</i> often disappears: <i>Je sais pas.</i> Keep it when you write.</p>`},
- {id:"nationalite",u:1,t:"Les adjectifs de nationalité",
-  h:`<table><tr><th>Rule</th><th>Masculin</th><th>Féminin</th></tr>
+ {id:"nationalite",u:1,t:"Les adjectifs de nationalité",en:"Nationality adjectives",
+  h:`<table><tr>${TH("Règle","rule")}${TH("Masculin","masculine")}${TH("Féminin","feminine")}</tr>
   <tr><td class="p">add -e</td><td class="f">français</td><td class="f">française</td></tr>
   <tr><td class="p">add -e</td><td class="f">allemand</td><td class="f">allemande</td></tr>
   <tr><td class="p">-ien → -ienne</td><td class="f">italien</td><td class="f">italienne</td></tr>
   <tr><td class="p">-éen → -éenne</td><td class="f">coréen</td><td class="f">coréenne</td></tr>
-  <tr><td class="p">ends in -e: same</td><td class="f">suisse</td><td class="f">suisse</td></tr>
+  <tr><td class="p">ends in -e: no change</td><td class="f">suisse</td><td class="f">suisse</td></tr>
   <tr><td class="p">special</td><td class="f">grec / turc</td><td class="f">grecque / turque</td></tr></table>
-  <p class="note">Listen for the difference: the final consonant is silent in the masculin and pronounced in the féminin (<i>françai<b>s</b></i> vs <i>françai<b>se</b></i>). Nationality adjectives take no capital letter.</p>
-  <ul class="ex"><li><span class="fr">Il est suédois. Elle est suédoise.</span></li><li><span class="fr">Vous êtes portugaise, madame ?</span></li></ul>`},
- {id:"articles",u:1,t:"Les articles définis le, la, l', les",
-  h:`<table><tr><th></th><th>Singulier</th><th>Pluriel</th></tr>
-  <tr><td class="p">Masculin</td><td class="f">le / l'</td><td class="f" rowspan="2">les</td></tr>
-  <tr><td class="p">Féminin</td><td class="f">la / l'</td></tr></table>
-  <p>Use <b>l'</b> before a vowel or a silent h: <i>l'art, l'histoire</i>.<br>Use them to talk about things in general, especially after <i>aimer</i>: <i>J'aime <b>la</b> musique.</i></p>
+  <p class="note">Listen for the difference: the final consonant is silent in the masculine and pronounced in the feminine (<i>françai<b>s</b></i> vs <i>françai<b>se</b></i>). Nationality adjectives take no capital letter.</p>
+  <ul class="ex">${EX("Il est suédois. Elle est suédoise.","He is Swedish. She is Swedish.")}${EX("Vous êtes portugaise, madame ?","Are you Portuguese, madam?")}</ul>`},
+ {id:"articles",u:1,t:"Les articles définis le, la, l', les",en:"The definite articles: the",
+  h:`<table><tr><th></th>${TH("Singulier","singular")}${TH("Pluriel","plural")}</tr>
+  <tr>${RL("Masculin","masculine")}<td class="f">le / l'</td><td class="f" rowspan="2">les</td></tr>
+  <tr>${RL("Féminin","feminine")}<td class="f">la / l'</td></tr></table>
+  <p>Use <b>l'</b> before a vowel or a silent h: <i>l'art, l'histoire</i>.<br>Use the article to talk about things in general, especially after <i>aimer</i>: <i>J'aime <b>la</b> musique.</i> (I like music.)</p>
   <p class="note">Countries take an article. Ending in -e: feminine (<i>la France, l'Italie</i>). Exceptions: <i>le Mexique, le Mozambique, le Cambodge, le Zimbabwe</i>. Ending in -s: plural (<i>les États-Unis, les Pays-Bas</i>).</p>`},
- {id:"prepositions",u:1,t:"À, au, en, aux + villes et pays",
-  h:`<table><tr><th>Before</th><th>Use</th><th>Example</th></tr>
+ {id:"prepositions",u:1,t:"À, au, en, aux + villes et pays",en:"In or to a city or country",
+  h:`<table><tr>${TH("Devant","before")}${TH("On dit","use")}${TH("Exemple","example")}</tr>
   <tr><td class="p">a city</td><td class="f">à</td><td>à Lisbonne, à Göteborg</td></tr>
-  <tr><td class="p">masculine country</td><td class="f">au</td><td>au Portugal, au Japon</td></tr>
-  <tr><td class="p">feminine country, or starts with a vowel</td><td class="f">en</td><td>en Suède, en France, en Iran</td></tr>
-  <tr><td class="p">plural country</td><td class="f">aux</td><td>aux États-Unis, aux Pays-Bas</td></tr></table>
-  <ul class="ex"><li><span class="fr">J'habite à Lisbonne, au Portugal.</span></li><li><span class="fr">Il est né en Argentine.</span></li></ul>`},
- {id:"quel",u:1,t:"L'adjectif interrogatif quel",
-  h:`<table><tr><th></th><th>Singulier</th><th>Pluriel</th></tr>
-  <tr><td class="p">Masculin</td><td class="f">quel</td><td class="f">quels</td></tr>
-  <tr><td class="p">Féminin</td><td class="f">quelle</td><td class="f">quelles</td></tr></table>
-  <p><b>quel</b> means "which / what" and agrees with the noun it goes with. All four forms sound the same.</p>
-  <ul class="ex"><li><span class="fr">Quel est ton numéro ?</span> (le numéro)</li><li><span class="fr">Tu habites dans quelle ville ?</span> (la ville)</li><li><span class="fr">Tu parles quelles langues ?</span> (les langues)</li></ul>`}
+  <tr><td class="p">a masculine country</td><td class="f">au</td><td>au Portugal, au Japon</td></tr>
+  <tr><td class="p">a feminine country, or one starting with a vowel</td><td class="f">en</td><td>en Suède, en France, en Iran</td></tr>
+  <tr><td class="p">a plural country</td><td class="f">aux</td><td>aux États-Unis, aux Pays-Bas</td></tr></table>
+  <ul class="ex">${EX("J'habite à Lisbonne, au Portugal.","I live in Lisbon, in Portugal.")}${EX("Il est né en Argentine.","He was born in Argentina.")}</ul>`},
+ {id:"quel",u:1,t:"L'adjectif interrogatif quel",en:"Which, what",
+  h:`<table><tr><th></th>${TH("Singulier","singular")}${TH("Pluriel","plural")}</tr>
+  <tr>${RL("Masculin","masculine")}<td class="f">quel</td><td class="f">quels</td></tr>
+  <tr>${RL("Féminin","feminine")}<td class="f">quelle</td><td class="f">quelles</td></tr></table>
+  <p><b>quel</b> means "which" or "what" and agrees with the noun it goes with. All four forms sound the same.</p>
+  <ul class="ex">${EX("Quel est ton numéro ?","What's your number? (le numéro)")}${EX("Tu habites dans quelle ville ?","Which city do you live in? (la ville)")}${EX("Tu parles quelles langues ?","Which languages do you speak? (les langues)")}</ul>`}
 ];
 
 /* ---------- phrases ---------- */
 const PH=[
- {id:"saluer",u:0,t:"Saluer",r:[["Bonjour (madame / monsieur)","Hello (polite)"],["Salut !","Hi / bye (informal)"],["Bonsoir","Good evening"],["Au revoir","Goodbye"],["À bientôt ! / À plus !","See you soon"],["À demain ! / À lundi !","See you tomorrow / Monday"],["Bonne journée !","Have a good day"],["Ciao !","Bye (informal)"]]},
- {id:"cava",u:0,t:"Ça va ?",r:[["Ça va ?","How's it going?"],["Oui, ça va, et toi ?","Fine, and you?"],["Ça va bien, merci.","Good, thanks."],["Tu vas bien ?","Are you well? (tu)"],["Vous allez bien ?","Are you well? (vous)"],["Très bien, merci. Et vous ?","Very well, thanks. And you?"]]},
- {id:"classe",u:0,t:"Dans la classe",r:[["Je ne comprends pas.","I don't understand."],["Vous pouvez répéter, s'il vous plaît ?","Can you repeat, please?"],["Comment ça s'écrit ?","How is that spelled?"],["Comment on dit… en français ?","How do you say… in French?"],["Excusez-moi, je suis en retard.","Sorry, I'm late."],["S'il vous plaît / S'il te plaît","Please (vous / tu)"],["Pardon / Excusez-moi / Excuse-moi","Sorry / Excuse me"]]},
- {id:"date",u:0,t:"Dire la date",r:[["Aujourd'hui, c'est mardi.","Today is Tuesday."],["Demain, c'est mercredi.","Tomorrow is Wednesday."],["On est le 12 octobre.","It's 12 October."],["le premier mai","1 May (1st is always premier)"]]},
- {id:"presenter",u:1,t:"Se présenter",r:[["Comment vous vous appelez ? / Comment tu t'appelles ?","What's your name?"],["Je m'appelle… / Moi, c'est…","My name is… / I'm…"],["Vous êtes hollandais(e) ? / Tu es…","Are you Dutch?"],["Non, je suis…","No, I'm…"],["Vous avez quel âge ? / Tu as quel âge ?","How old are you?"],["J'ai 30 ans.","I'm 30. (avoir, not être)"],["J'habite à…","I live in…"],["Je suis né(e) à…","I was born in…"],["J'aime la musique et le sport.","I like music and sport."]]},
- {id:"coordonnees",u:1,t:"Donner ses coordonnées",r:[["Quel est ton numéro de téléphone ?","What's your phone number?"],["C'est le 06 80 72 86 45.","It's… (read in pairs)"],["Quel est ton mail ?","What's your email?"],["@ arobase · . point","@ at · . dot"],["Tu as Instagram ?","Do you have Instagram?"]]}
+ {id:"saluer",u:0,t:"Saluer",en:"Greeting people",r:[["Bonjour (madame / monsieur)","Hello (polite)"],["Salut !","Hi / bye (informal)"],["Bonsoir","Good evening"],["Au revoir","Goodbye"],["À bientôt ! / À plus !","See you soon"],["À demain ! / À lundi !","See you tomorrow / on Monday"],["Bonne journée !","Have a good day"],["Ciao !","Bye (informal)"]]},
+ {id:"cava",u:0,t:"Ça va ?",en:"How are you?",r:[["Ça va ?","How's it going?"],["Oui, ça va, et toi ?","Fine, and you?"],["Ça va bien, merci.","Good, thanks."],["Tu vas bien ?","Are you well? (tu)"],["Vous allez bien ?","Are you well? (vous)"],["Très bien, merci. Et vous ?","Very well, thanks. And you?"]]},
+ {id:"classe",u:0,t:"Dans la classe",en:"In class",r:[["Je ne comprends pas.","I don't understand."],["Vous pouvez répéter, s'il vous plaît ?","Can you repeat, please?"],["Comment ça s'écrit ?","How is that spelled?"],["Comment on dit… en français ?","How do you say… in French?"],["Excusez-moi, je suis en retard.","Sorry, I'm late."],["S'il vous plaît / S'il te plaît","Please (vous / tu)"],["Pardon / Excusez-moi / Excuse-moi","Sorry / Excuse me"]]},
+ {id:"date",u:0,t:"Dire la date",en:"Saying the date",r:[["Aujourd'hui, c'est mardi.","Today is Tuesday."],["Demain, c'est mercredi.","Tomorrow is Wednesday."],["On est le 12 octobre.","It's 12 October."],["le premier mai","1 May (the 1st is always premier)"]]},
+ {id:"presenter",u:1,t:"Se présenter",en:"Introducing yourself",r:[["Comment vous vous appelez ? / Comment tu t'appelles ?","What's your name?"],["Je m'appelle… / Moi, c'est…","My name is… / I'm…"],["Vous êtes hollandais(e) ? / Tu es…","Are you Dutch?"],["Non, je suis…","No, I'm…"],["Vous avez quel âge ? / Tu as quel âge ?","How old are you?"],["J'ai 30 ans.","I'm 30. (with avoir, not être)"],["J'habite à…","I live in…"],["Je suis né(e) à…","I was born in…"],["J'aime la musique et le sport.","I like music and sport."]]},
+ {id:"coordonnees",u:1,t:"Donner ses coordonnées",en:"Giving your contact details",r:[["Quel est ton numéro de téléphone ?","What's your phone number?"],["C'est le 06 80 72 86 45.","It's 06 80 72 86 45. (read in pairs)"],["Quel est ton mail ?","What's your email?"],["@ arobase · . point","@ at · . dot"],["Tu as Instagram ?","Do you have Instagram?"]]}
 ];
 
 /* ---------- vocabulary ---------- */
 const N0=["zéro","un","deux","trois","quatre","cinq","six","sept","huit","neuf","dix","onze","douze","treize","quatorze","quinze","seize","dix-sept","dix-huit","dix-neuf","vingt","vingt et un","vingt-deux","vingt-trois","vingt-quatre","vingt-cinq","vingt-six","vingt-sept","vingt-huit","vingt-neuf","trente","trente et un"];
+const PAYS=[["l'Algérie","algérien(ne)","Algeria","Algerian"],["l'Allemagne","allemand(e)","Germany","German"],["l'Argentine","argentin(e)","Argentina","Argentinian"],["la Belgique","belge","Belgium","Belgian"],["le Brésil","brésilien(ne)","Brazil","Brazilian"],["le Cameroun","camerounais(e)","Cameroon","Cameroonian"],["le Canada","canadien(ne)","Canada","Canadian"],["la Chine","chinois(e)","China","Chinese"],["la Colombie","colombien(ne)","Colombia","Colombian"],["le Congo","congolais(e)","Congo","Congolese"],["la Corée","coréen(ne)","Korea","Korean"],["l'Espagne","espagnol(e)","Spain","Spanish"],["les États-Unis","américain(e)","United States","American"],["la France","français(e)","France","French"],["l'Inde","indien(ne)","India","Indian"],["l'Italie","italien(ne)","Italy","Italian"],["le Japon","japonais(e)","Japan","Japanese"],["le Maroc","marocain(e)","Morocco","Moroccan"],["le Mexique","mexicain(e)","Mexico","Mexican"],["la Pologne","polonais(e)","Poland","Polish"],["les Pays-Bas","hollandais(e)","Netherlands","Dutch"],["le Portugal","portugais(e)","Portugal","Portuguese"],["la Russie","russe","Russia","Russian"],["le Sénégal","sénégalais(e)","Senegal","Senegalese"],["la Suède","suédois(e)","Sweden","Swedish"],["la Suisse","suisse","Switzerland","Swiss"],["la République tchèque","tchèque","Czech Republic","Czech"],["la Tunisie","tunisien(ne)","Tunisia","Tunisian"],["le Vietnam","vietnamien(ne)","Vietnam","Vietnamese"]];
 const VO=[
- {id:"n0",u:0,t:"Les nombres 0 à 31",r:N0.map((w,i)=>[String(i),w]),cols:1},
- {id:"jours",u:0,t:"Les jours de la semaine",r:[["lundi","Monday"],["mardi","Tuesday"],["mercredi","Wednesday"],["jeudi","Thursday"],["vendredi","Friday"],["samedi","Saturday"],["dimanche","Sunday"]],note:"No capital letters for days or months."},
- {id:"mois",u:0,t:"Les mois de l'année",r:[["janvier","January"],["février","February"],["mars","March"],["avril","April"],["mai","May"],["juin","June"],["juillet","July"],["août","August"],["septembre","September"],["octobre","October"],["novembre","November"],["décembre","December"]],cols:1},
- {id:"n32",u:1,t:"Les nombres 32 à 69",r:[["32","trente-deux"],["40","quarante"],["41","quarante et un"],["42","quarante-deux"],["50","cinquante"],["51","cinquante et un"],["60","soixante"],["61","soixante et un"],["69","soixante-neuf"]],note:"The pattern: tens, then et un for 1, hyphen for 2 to 9."},
- {id:"n70",u:1,t:"Les nombres 70 à 100",r:[["70","soixante-dix (60 + 10)"],["71","soixante et onze"],["72","soixante-douze"],["79","soixante-dix-neuf"],["80","quatre-vingts (4 × 20)"],["81","quatre-vingt-un"],["90","quatre-vingt-dix"],["91","quatre-vingt-onze"],["99","quatre-vingt-dix-neuf"],["100","cent"]],note:"Belgium and Switzerland say septante (70) and nonante (90). Switzerland also says huitante (80)."},
- {id:"pays",u:1,t:"Les pays et nationalités",r:[["l'Algérie","algérien(ne)"],["l'Allemagne","allemand(e)"],["l'Argentine","argentin(e)"],["la Belgique","belge"],["le Brésil","brésilien(ne)"],["le Cameroun","camerounais(e)"],["le Canada","canadien(ne)"],["la Chine","chinois(e)"],["la Colombie","colombien(ne)"],["le Congo","congolais(e)"],["la Corée","coréen(ne)"],["l'Espagne","espagnol(e)"],["les États-Unis","américain(e)"],["la France","français(e)"],["l'Inde","indien(ne)"],["l'Italie","italien(ne)"],["le Japon","japonais(e)"],["le Maroc","marocain(e)"],["le Mexique","mexicain(e)"],["la Pologne","polonais(e)"],["les Pays-Bas","hollandais(e)"],["le Portugal","portugais(e)"],["la Russie","russe"],["le Sénégal","sénégalais(e)"],["la Suède","suédois(e)"],["la Suisse","suisse"],["la République tchèque","tchèque"],["la Tunisie","tunisien(ne)"],["le Vietnam","vietnamien(ne)"]],cols:1},
- {id:"loisirs",u:1,t:"Les loisirs (1)",r:[["l'art (m.)","art"],["le cinéma","cinema"],["les langues (f.)","languages"],["la musique","music"],["le sport","sport"]]},
- {id:"identite",u:1,t:"L'identité, les coordonnées",r:[["le nom","surname"],["le prénom","first name"],["la date de naissance","date of birth"],["le lieu de naissance","place of birth"],["le pays, la ville","country, city"],["l'adresse mail (f.), le mail","email address"],["le numéro de téléphone","phone number"],["le compte Instagram","Instagram account"]]}
+ {id:"n0",u:0,t:"Les nombres 0 à 31",en:"Numbers 0 to 31",r:N0.map((w,i)=>[w,String(i)])},
+ {id:"jours",u:0,t:"Les jours de la semaine",en:"Days of the week",r:[["lundi","Monday"],["mardi","Tuesday"],["mercredi","Wednesday"],["jeudi","Thursday"],["vendredi","Friday"],["samedi","Saturday"],["dimanche","Sunday"]],note:"Days and months are written without a capital letter."},
+ {id:"mois",u:0,t:"Les mois de l'année",en:"Months of the year",r:[["janvier","January"],["février","February"],["mars","March"],["avril","April"],["mai","May"],["juin","June"],["juillet","July"],["août","August"],["septembre","September"],["octobre","October"],["novembre","November"],["décembre","December"]]},
+ {id:"n32",u:1,t:"Les nombres 32 à 69",en:"Numbers 32 to 69",r:[["trente-deux","32"],["quarante","40"],["quarante et un","41"],["quarante-deux","42"],["cinquante","50"],["cinquante et un","51"],["soixante","60"],["soixante et un","61"],["soixante-neuf","69"]],note:"The pattern: the tens, then et un for 1, and a hyphen for 2 to 9."},
+ {id:"n70",u:1,t:"Les nombres 70 à 100",en:"Numbers 70 to 100",r:[["soixante-dix","70 (60 + 10)"],["soixante et onze","71"],["soixante-douze","72"],["soixante-dix-neuf","79"],["quatre-vingts","80 (4 × 20)"],["quatre-vingt-un","81"],["quatre-vingt-dix","90"],["quatre-vingt-onze","91"],["quatre-vingt-dix-neuf","99"],["cent","100"]],note:"Belgium and Switzerland say septante (70) and nonante (90). Switzerland also says huitante (80)."},
+ {id:"pays",u:1,t:"Les pays et nationalités",en:"Countries and nationalities",r:PAYS.map(p=>[p[0]+" · "+p[1],p[2]+" · "+p[3]]),wide:1},
+ {id:"loisirs",u:1,t:"Les loisirs (1)",en:"Hobbies",r:[["l'art (m.)","art"],["le cinéma","cinema"],["les langues (f.)","languages"],["la musique","music"],["le sport","sport"]]},
+ {id:"identite",u:1,t:"L'identité, les coordonnées",en:"Identity and contact details",r:[["le nom","surname"],["le prénom","first name"],["la date de naissance","date of birth"],["le lieu de naissance","place of birth"],["le pays, la ville","country, city"],["l'adresse mail (f.), le mail","email address"],["le numéro de téléphone","phone number"],["le compte Instagram","Instagram account"]]}
 ];
 
 /* ---------- verbs ---------- */
 const PERSONS=["je","tu","il / elle / on","nous","vous","ils / elles"];
-const TENSES=[["pres","Présent","Now, habits, general truths"],["pc","Passé composé","Finished past events"],["imp","Imparfait","Ongoing or repeated past"],["fut","Futur simple","Will do (speech prefers aller + inf.)"],["cond","Conditionnel","Would do, polite requests"],["subj","Subjonctif présent","After il faut que, je veux que, pour que"]];
+const TENSES=[["pres","Présent","present","Now, habits, general truths"],["pc","Passé composé","past","Finished past events"],["imp","Imparfait","imperfect","Ongoing or repeated past"],["fut","Futur simple","future","Will do (speech prefers aller + infinitive)"],["cond","Conditionnel","conditional","Would do, polite requests"],["subj","Subjonctif présent","subjunctive","After il faut que, je veux que, pour que"]];
 const E6=(s,e)=>e.map(x=>s+x);
 const fut=s=>E6(s,["ai","as","a","ons","ez","ont"]);
 const cond=s=>E6(s,["ais","ais","ait","ions","iez","aient"]);
@@ -224,74 +246,74 @@ const pcA=pp=>AV.map(a=>a+" "+pp);
 const pcE=pp=>ET.map((a,i)=>a+" "+pp+(i<3?"(e)":i===4?"(e)(s)":"(e)s"));
 const er=(r,o={})=>Object.assign({pres:E6(r,["e","es","e","ons","ez","ent"]),pc:pcA(r+"é"),imp:imp(r),fut:fut(r+"er"),cond:cond(r+"er"),subj:sub(r)},o);
 const V=[
- {v:"être",u:1,g:"to be",irr:1,pp:"été",aux:"avoir",ex:"Je suis en cours de français.",pres:["suis","es","est","sommes","êtes","sont"],pc:pcA("été"),imp:imp("ét"),fut:fut("ser"),cond:cond("ser"),subj:["sois","sois","soit","soyons","soyez","soient"]},
- {v:"avoir",u:1,g:"to have",irr:1,pp:"eu",aux:"avoir",ex:"J'ai trente ans.",pres:["ai","as","a","avons","avez","ont"],pc:pcA("eu"),imp:imp("av"),fut:fut("aur"),cond:cond("aur"),subj:["aie","aies","ait","ayons","ayez","aient"]},
- {v:"s'appeler",u:1,g:"to be called",irr:1,pp:"appelé",aux:"être",ex:"Comment tu t'appelles ?",note:"ll before a silent ending",pres:["m'appelle","t'appelles","s'appelle","nous appelons","vous appelez","s'appellent"],pc:["me suis appelé(e)","t'es appelé(e)","s'est appelé(e)","nous sommes appelé(e)s","vous êtes appelé(e)(s)","se sont appelé(e)s"],imp:["m'appelais","t'appelais","s'appelait","nous appelions","vous appeliez","s'appelaient"],fut:["m'appellerai","t'appelleras","s'appellera","nous appellerons","vous appellerez","s'appelleront"],cond:["m'appellerais","t'appellerais","s'appellerait","nous appellerions","vous appelleriez","s'appelleraient"],subj:["m'appelle","t'appelles","s'appelle","nous appelions","vous appeliez","s'appellent"]},
- Object.assign(er("parl"),{v:"parler",u:1,g:"to speak, to talk",pp:"parlé",aux:"avoir",ex:"Vous parlez anglais ?"}),
- Object.assign(er("habit"),{v:"habiter",u:2,g:"to live (somewhere)",pp:"habité",aux:"avoir",ex:"J'habite à Lisbonne."}),
- Object.assign(er("aim"),{v:"aimer",u:2,g:"to like, to love",pp:"aimé",aux:"avoir",ex:"J'aime la musique."}),
- {v:"aller",u:3,g:"to go",irr:1,pp:"allé",aux:"être",ex:"Je vais à Paris vendredi.",pres:["vais","vas","va","allons","allez","vont"],pc:pcE("allé"),imp:imp("all"),fut:fut("ir"),cond:cond("ir"),subj:["aille","ailles","aille","allions","alliez","aillent"]},
- {v:"faire",u:3,g:"to do, to make",irr:1,pp:"fait",aux:"avoir",ex:"Qu'est-ce que tu fais ce week-end ?",pres:["fais","fais","fait","faisons","faites","font"],pc:pcA("fait"),imp:imp("fais"),fut:fut("fer"),cond:cond("fer"),subj:sub("fass")},
- Object.assign(er("mang",{pres:["mange","manges","mange","mangeons","mangez","mangent"],imp:["mangeais","mangeais","mangeait","mangions","mangiez","mangeaient"]}),{v:"manger",u:3,g:"to eat",pp:"mangé",aux:"avoir",ex:"On mange à huit heures.",note:"keeps the e before a and o"}),
- {v:"finir",u:3,g:"to finish",pp:"fini",aux:"avoir",ex:"Je finis à dix-huit heures.",pres:["finis","finis","finit","finissons","finissez","finissent"],pc:pcA("fini"),imp:imp("finiss"),fut:fut("finir"),cond:cond("finir"),subj:sub("finiss")},
- {v:"prendre",u:4,g:"to take, to have (food, drink)",irr:1,pp:"pris",aux:"avoir",ex:"Je prends le train de huit heures.",pres:["prends","prends","prend","prenons","prenez","prennent"],pc:pcA("pris"),imp:imp("pren"),fut:fut("prendr"),cond:cond("prendr"),subj:["prenne","prennes","prenne","prenions","preniez","prennent"]},
- {v:"mettre",u:5,g:"to put, to put on",irr:1,pp:"mis",aux:"avoir",ex:"Où est-ce que tu as mis les clés ?",pres:["mets","mets","met","mettons","mettez","mettent"],pc:pcA("mis"),imp:imp("mett"),fut:fut("mettr"),cond:cond("mettr"),subj:sub("mett")},
- {v:"venir",u:5,g:"to come",irr:1,pp:"venu",aux:"être",ex:"Tu viens dîner avec nous ?",pres:["viens","viens","vient","venons","venez","viennent"],pc:pcE("venu"),imp:imp("ven"),fut:fut("viendr"),cond:cond("viendr"),subj:["vienne","viennes","vienne","venions","veniez","viennent"]},
- {v:"pouvoir",u:6,g:"can, to be able",irr:1,pp:"pu",aux:"avoir",ex:"Vous pouvez répéter, s'il vous plaît ?",pres:["peux","peux","peut","pouvons","pouvez","peuvent"],pc:pcA("pu"),imp:imp("pouv"),fut:fut("pourr"),cond:cond("pourr"),subj:sub("puiss")},
- {v:"vouloir",u:6,g:"to want",irr:1,pp:"voulu",aux:"avoir",ex:"Je voudrais un café, s'il vous plaît.",pres:["veux","veux","veut","voulons","voulez","veulent"],pc:pcA("voulu"),imp:imp("voul"),fut:fut("voudr"),cond:cond("voudr"),subj:["veuille","veuilles","veuille","voulions","vouliez","veuillent"]},
- {v:"partir",u:6,g:"to leave",irr:1,pp:"parti",aux:"être",ex:"Elle est partie ce matin.",pres:["pars","pars","part","partons","partez","partent"],pc:pcE("parti"),imp:imp("part"),fut:fut("partir"),cond:cond("partir"),subj:sub("part")},
- {v:"connaître",u:7,g:"to know (people, places)",irr:1,pp:"connu",aux:"avoir",ex:"Tu connais un bon restaurant ici ?",pres:["connais","connais","connaît","connaissons","connaissez","connaissent"],pc:pcA("connu"),imp:imp("connaiss"),fut:fut("connaîtr"),cond:cond("connaîtr"),subj:sub("connaiss")},
- {v:"devoir",u:8,g:"must, to have to",irr:1,pp:"dû",aux:"avoir",ex:"Je dois partir à six heures.",pres:["dois","dois","doit","devons","devez","doivent"],pc:pcA("dû"),imp:imp("dev"),fut:fut("devr"),cond:cond("devr"),subj:["doive","doives","doive","devions","deviez","doivent"]},
- {v:"dire",g:"to say, to tell",irr:1,pp:"dit",aux:"avoir",ex:"Il a dit qu'il viendrait plus tard.",pres:["dis","dis","dit","disons","dites","disent"],pc:pcA("dit"),imp:imp("dis"),fut:fut("dir"),cond:cond("dir"),subj:sub("dis")},
- {v:"savoir",g:"to know (facts, how to)",irr:1,pp:"su",aux:"avoir",ex:"Je ne sais pas.",pres:["sais","sais","sait","savons","savez","savent"],pc:pcA("su"),imp:imp("sav"),fut:fut("saur"),cond:cond("saur"),subj:sub("sach")},
- {v:"voir",g:"to see",irr:1,pp:"vu",aux:"avoir",ex:"Tu as vu l'email ?",pres:["vois","vois","voit","voyons","voyez","voient"],pc:pcA("vu"),imp:imp("voy"),fut:fut("verr"),cond:cond("verr"),subj:["voie","voies","voie","voyions","voyiez","voient"]},
- {v:"attendre",g:"to wait (for)",pp:"attendu",aux:"avoir",ex:"J'attends le bus.",pres:["attends","attends","attend","attendons","attendez","attendent"],pc:pcA("attendu"),imp:imp("attend"),fut:fut("attendr"),cond:cond("attendr"),subj:sub("attend")}
+ {v:"être",u:1,g:"to be",irr:1,pp:"été",aux:"avoir",ex:"Je suis en cours de français.",exen:"I'm in French class.",pres:["suis","es","est","sommes","êtes","sont"],pc:pcA("été"),imp:imp("ét"),fut:fut("ser"),cond:cond("ser"),subj:["sois","sois","soit","soyons","soyez","soient"]},
+ {v:"avoir",u:1,g:"to have",irr:1,pp:"eu",aux:"avoir",ex:"J'ai trente ans.",exen:"I'm thirty.",pres:["ai","as","a","avons","avez","ont"],pc:pcA("eu"),imp:imp("av"),fut:fut("aur"),cond:cond("aur"),subj:["aie","aies","ait","ayons","ayez","aient"]},
+ {v:"s'appeler",u:1,g:"to be called",irr:1,pp:"appelé",aux:"être",ex:"Comment tu t'appelles ?",exen:"What's your name?",note:"ll before a silent ending",pres:["m'appelle","t'appelles","s'appelle","nous appelons","vous appelez","s'appellent"],pc:["me suis appelé(e)","t'es appelé(e)","s'est appelé(e)","nous sommes appelé(e)s","vous êtes appelé(e)(s)","se sont appelé(e)s"],imp:["m'appelais","t'appelais","s'appelait","nous appelions","vous appeliez","s'appelaient"],fut:["m'appellerai","t'appelleras","s'appellera","nous appellerons","vous appellerez","s'appelleront"],cond:["m'appellerais","t'appellerais","s'appellerait","nous appellerions","vous appelleriez","s'appelleraient"],subj:["m'appelle","t'appelles","s'appelle","nous appelions","vous appeliez","s'appellent"]},
+ Object.assign(er("parl"),{v:"parler",u:1,g:"to speak, to talk",pp:"parlé",aux:"avoir",ex:"Vous parlez anglais ?",exen:"Do you speak English?"}),
+ Object.assign(er("habit"),{v:"habiter",u:2,g:"to live (somewhere)",pp:"habité",aux:"avoir",ex:"J'habite à Lisbonne.",exen:"I live in Lisbon."}),
+ Object.assign(er("aim"),{v:"aimer",u:2,g:"to like, to love",pp:"aimé",aux:"avoir",ex:"J'aime la musique.",exen:"I like music."}),
+ {v:"aller",u:3,g:"to go",irr:1,pp:"allé",aux:"être",ex:"Je vais à Paris vendredi.",exen:"I'm going to Paris on Friday.",pres:["vais","vas","va","allons","allez","vont"],pc:pcE("allé"),imp:imp("all"),fut:fut("ir"),cond:cond("ir"),subj:["aille","ailles","aille","allions","alliez","aillent"]},
+ {v:"faire",u:3,g:"to do, to make",irr:1,pp:"fait",aux:"avoir",ex:"Qu'est-ce que tu fais ce week-end ?",exen:"What are you doing this weekend?",pres:["fais","fais","fait","faisons","faites","font"],pc:pcA("fait"),imp:imp("fais"),fut:fut("fer"),cond:cond("fer"),subj:sub("fass")},
+ Object.assign(er("mang",{pres:["mange","manges","mange","mangeons","mangez","mangent"],imp:["mangeais","mangeais","mangeait","mangions","mangiez","mangeaient"]}),{v:"manger",u:3,g:"to eat",pp:"mangé",aux:"avoir",ex:"On mange à huit heures.",exen:"We eat at eight.",note:"keeps the e before a and o"}),
+ {v:"finir",u:3,g:"to finish",pp:"fini",aux:"avoir",ex:"Je finis à dix-huit heures.",exen:"I finish at 6 pm.",pres:["finis","finis","finit","finissons","finissez","finissent"],pc:pcA("fini"),imp:imp("finiss"),fut:fut("finir"),cond:cond("finir"),subj:sub("finiss")},
+ {v:"prendre",u:4,g:"to take, to have (food, drink)",irr:1,pp:"pris",aux:"avoir",ex:"Je prends le train de huit heures.",exen:"I'm taking the eight o'clock train.",pres:["prends","prends","prend","prenons","prenez","prennent"],pc:pcA("pris"),imp:imp("pren"),fut:fut("prendr"),cond:cond("prendr"),subj:["prenne","prennes","prenne","prenions","preniez","prennent"]},
+ {v:"mettre",u:5,g:"to put, to put on",irr:1,pp:"mis",aux:"avoir",ex:"Où est-ce que tu as mis les clés ?",exen:"Where did you put the keys?",pres:["mets","mets","met","mettons","mettez","mettent"],pc:pcA("mis"),imp:imp("mett"),fut:fut("mettr"),cond:cond("mettr"),subj:sub("mett")},
+ {v:"venir",u:5,g:"to come",irr:1,pp:"venu",aux:"être",ex:"Tu viens dîner avec nous ?",exen:"Are you coming to dinner with us?",pres:["viens","viens","vient","venons","venez","viennent"],pc:pcE("venu"),imp:imp("ven"),fut:fut("viendr"),cond:cond("viendr"),subj:["vienne","viennes","vienne","venions","veniez","viennent"]},
+ {v:"pouvoir",u:6,g:"can, to be able",irr:1,pp:"pu",aux:"avoir",ex:"Vous pouvez répéter, s'il vous plaît ?",exen:"Can you repeat, please?",pres:["peux","peux","peut","pouvons","pouvez","peuvent"],pc:pcA("pu"),imp:imp("pouv"),fut:fut("pourr"),cond:cond("pourr"),subj:sub("puiss")},
+ {v:"vouloir",u:6,g:"to want",irr:1,pp:"voulu",aux:"avoir",ex:"Je voudrais un café, s'il vous plaît.",exen:"I'd like a coffee, please.",pres:["veux","veux","veut","voulons","voulez","veulent"],pc:pcA("voulu"),imp:imp("voul"),fut:fut("voudr"),cond:cond("voudr"),subj:["veuille","veuilles","veuille","voulions","vouliez","veuillent"]},
+ {v:"partir",u:6,g:"to leave",irr:1,pp:"parti",aux:"être",ex:"Elle est partie ce matin.",exen:"She left this morning.",pres:["pars","pars","part","partons","partez","partent"],pc:pcE("parti"),imp:imp("part"),fut:fut("partir"),cond:cond("partir"),subj:sub("part")},
+ {v:"connaître",u:7,g:"to know (people, places)",irr:1,pp:"connu",aux:"avoir",ex:"Tu connais un bon restaurant ici ?",exen:"Do you know a good restaurant here?",pres:["connais","connais","connaît","connaissons","connaissez","connaissent"],pc:pcA("connu"),imp:imp("connaiss"),fut:fut("connaîtr"),cond:cond("connaîtr"),subj:sub("connaiss")},
+ {v:"devoir",u:8,g:"must, to have to",irr:1,pp:"dû",aux:"avoir",ex:"Je dois partir à six heures.",exen:"I have to leave at six.",pres:["dois","dois","doit","devons","devez","doivent"],pc:pcA("dû"),imp:imp("dev"),fut:fut("devr"),cond:cond("devr"),subj:["doive","doives","doive","devions","deviez","doivent"]},
+ {v:"dire",g:"to say, to tell",irr:1,pp:"dit",aux:"avoir",ex:"Il a dit qu'il viendrait plus tard.",exen:"He said he would come later.",pres:["dis","dis","dit","disons","dites","disent"],pc:pcA("dit"),imp:imp("dis"),fut:fut("dir"),cond:cond("dir"),subj:sub("dis")},
+ {v:"savoir",g:"to know (facts, how to)",irr:1,pp:"su",aux:"avoir",ex:"Je ne sais pas.",exen:"I don't know.",pres:["sais","sais","sait","savons","savez","savent"],pc:pcA("su"),imp:imp("sav"),fut:fut("saur"),cond:cond("saur"),subj:sub("sach")},
+ {v:"voir",g:"to see",irr:1,pp:"vu",aux:"avoir",ex:"Tu as vu l'email ?",exen:"Have you seen the email?",pres:["vois","vois","voit","voyons","voyez","voient"],pc:pcA("vu"),imp:imp("voy"),fut:fut("verr"),cond:cond("verr"),subj:["voie","voies","voie","voyions","voyiez","voient"]},
+ {v:"attendre",g:"to wait (for)",pp:"attendu",aux:"avoir",ex:"J'attends le bus.",exen:"I'm waiting for the bus.",pres:["attends","attends","attend","attendons","attendez","attendent"],pc:pcA("attendu"),imp:imp("attend"),fut:fut("attendr"),cond:cond("attendr"),subj:sub("attend")}
 ];
 
 /* ---------- worksheets ---------- */
 const FICHES=[
- {id:"f0",u:0,t:"Fiche 0 · Bienvenue !",ref:"Livre p. 11 à 16 · Cahier p. 3 à 6",exos:[
-  {t:"Les salutations",ref:"p. 12",instr:"Complete the dialogues.",bank:["salut","bien","toi","vous","revoir","demain"],type:"input",items:[
+ {id:"f0",t:"Fiche 0 · Bienvenue !",en:"Worksheet 0 · Welcome!",ref:"Textbook pp. 11–16 · Workbook pp. 3–6",exos:[
+  {t:"Les salutations",en:"Greetings",ref:"Textbook p. 12",instr:"Complete the dialogues.",bank:["salut","bien","toi","vous","revoir","demain"],type:"input",items:[
    {q:"(to a friend) ___ Léa ! Ça va ?",a:["salut","bonjour"]},
    {q:"Bonjour madame Dupont, vous allez ___ ?",a:["bien"]},
    {q:"Oui, ça va, et ___ ? (to a friend)",a:["toi"]},
    {q:"Très bien, merci. Et ___ , monsieur ?",a:["vous"]},
    {q:"Au ___ et bonne journée !",a:["revoir"]},
    {q:"(see you tomorrow) À ___ !",a:["demain"]}]},
-  {t:"Tu ou vous ?",ref:"p. 12",instr:"Which one do you use?",type:"choice",items:[
+  {t:"Tu ou vous ?",en:"Informal or formal?",ref:"Textbook p. 12",instr:"Which one do you use?",type:"choice",items:[
    {q:"Your colleague's young son",opts:["tu","vous"],a:"tu"},
    {q:"A waiter in a café in Paris",opts:["tu","vous"],a:"vous"},
    {q:"Your teacher, on the first day",opts:["tu","vous"],a:"vous"},
    {q:"Your sister",opts:["tu","vous"],a:"tu"},
    {q:"Two friends at once",opts:["tu","vous"],a:"vous"},
    {q:"A customs officer at the port",opts:["tu","vous"],a:"vous"}]},
-  {t:"Moi, toi, vous",ref:"p. 13",instr:"Complete with moi, toi or vous.",type:"input",items:[
+  {t:"Moi, toi, vous",en:"Stressed pronouns",ref:"Textbook p. 13",instr:"Complete with moi, toi or vous.",type:"input",items:[
    {q:"___ , je m'appelle Chefen. Et toi ?",a:["moi"]},
    {q:"Je m'appelle Karim. Et ___ ? (informal)",a:["toi"]},
    {q:"Bonjour madame, je suis monsieur Petit. Et ___ ?",a:["vous"]},
    {q:"Ça va bien, merci. Et ___ ? (formal)",a:["vous"]}]},
-  {t:"Les nombres",ref:"p. 14",instr:"Write the number in letters.",type:"input",items:[
+  {t:"Les nombres",en:"Numbers",ref:"Textbook p. 14",instr:"Write the number in words.",type:"input",items:[
    {q:"7 → ___",a:["sept"]},{q:"11 → ___",a:["onze"]},{q:"15 → ___",a:["quinze"]},{q:"16 → ___",a:["seize"]},
    {q:"19 → ___",a:["dix-neuf"]},{q:"21 → ___",a:["vingt et un"]},{q:"28 → ___",a:["vingt-huit"]},{q:"31 → ___",a:["trente et un"]}]},
-  {t:"Les jours et les mois",ref:"p. 15",instr:"Complete.",type:"input",items:[
+  {t:"Les jours et les mois",en:"Days and months",ref:"Textbook p. 15",instr:"Complete.",type:"input",items:[
    {q:"Aujourd'hui, c'est lundi. Demain, c'est ___ .",a:["mardi"]},
    {q:"Aujourd'hui, c'est vendredi. Demain, c'est ___ .",a:["samedi"]},
    {q:"Aujourd'hui, c'est dimanche. Demain, c'est ___ .",a:["lundi"]},
-   {q:"Le mois après mars : ___",a:["avril"]},
-   {q:"Le mois après juillet : ___",a:["août"]},
-   {q:"Le mois après novembre : ___",a:["décembre"]},
+   {q:"The month after mars: ___",a:["avril"]},
+   {q:"The month after juillet: ___",a:["août"]},
+   {q:"The month after novembre: ___",a:["décembre"]},
    {q:"Write the date 1/5 in words: ___",a:["le premier mai","premier mai","le 1er mai"],long:1},
    {q:"La fête nationale française, c'est le ___ juillet.",a:["quatorze","14"]}]},
-  {t:"Dans la classe",ref:"p. 16",instr:"What do you say? Write the full phrase.",type:"input",items:[
+  {t:"Dans la classe",en:"In class",ref:"Textbook p. 16",instr:"What do you say? Write the full phrase.",type:"input",items:[
    {q:"You didn't understand: ___",a:["je ne comprends pas"],long:1},
    {q:"You want the teacher to say it again: ___",a:["vous pouvez répéter s'il vous plaît","vous pouvez répéter","pouvez-vous répéter s'il vous plaît","pouvez-vous répéter"],long:1},
    {q:"You arrive late: ___",a:["excusez-moi je suis en retard","pardon je suis en retard","excusez-moi"],long:1},
    {q:"You want to know how a word is spelled: ___",a:["comment ça s'écrit","comment ca s'ecrit"],long:1},
    {q:"You want the French word for 'ship': ___",a:["comment on dit ship en français","comment dit-on ship en français"],long:1}]},
-  {t:"À vous !",ref:"Production écrite",instr:"Write a short first-day message to your teacher: greet them, say your name, say how you are, and say goodbye.",type:"write",min:20,model:"Bonjour madame ! Je m'appelle Chefen. Ça va bien, merci. Je ne comprends pas tout, mais j'aime le français ! À demain !"}
+  {t:"À vous !",en:"Your turn",ref:"Writing",instr:"Write a short first-day message to your teacher: greet them, say your name, say how you are, and say goodbye.",type:"write",min:20,model:"Bonjour madame ! Je m'appelle Chefen. Ça va bien, merci. Je ne comprends pas tout, mais j'aime le français ! À demain !"}
  ]},
- {id:"f1",u:1,t:"Fiche 1 · Je suis…",ref:"Livre p. 17 à 30 · Cahier p. 7 à 18",exos:[
-  {t:"Être, avoir, s'appeler, parler",ref:"p. 18, 19, 26",instr:"Conjugate the verb in brackets.",type:"input",items:[
+ {id:"f1",t:"Fiche 1 · Je suis…",en:"Worksheet 1 · I am…",ref:"Textbook pp. 17–30 · Workbook pp. 7–18",exos:[
+  {t:"Être, avoir, s'appeler, parler",en:"The Unit 1 verbs",ref:"Textbook pp. 18, 19, 26",instr:"Conjugate the verb in brackets.",type:"input",items:[
    {q:"Je ___ à Lisbonne. (être)",a:["suis"]},
    {q:"Tu ___ italienne ? (être)",a:["es"]},
    {q:"Vous ___ français, monsieur ? (être)",a:["êtes"]},
@@ -306,7 +328,7 @@ const FICHES=[
    {q:"Comment vous ___ ? (s'appeler)",a:["vous appelez"]},
    {q:"Nous ___ français et anglais. (parler)",a:["parlons"]},
    {q:"Ils ___ espagnol. (parler)",a:["parlent"]}]},
-  {t:"Les nationalités",ref:"p. 19",instr:"Make the adjective agree where needed.",type:"input",items:[
+  {t:"Les nationalités",en:"Nationalities",ref:"Textbook p. 19",instr:"Make the adjective agree where needed.",type:"input",items:[
    {q:"Elle est ___ . (japonais)",a:["japonaise"]},
    {q:"Il est ___ , Alberto ? (colombien)",a:["colombien"]},
    {q:"Giulia est ___ . (italien)",a:["italienne"]},
@@ -317,11 +339,11 @@ const FICHES=[
    {q:"Elle est ___ . (canadien)",a:["canadienne"]},
    {q:"Il est ___ . (suédois)",a:["suédois"]},
    {q:"Elle est ___ . (suisse)",a:["suisse"]}]},
-  {t:"Le, la, l', les",ref:"p. 20, 27",instr:"Complete with the definite article.",type:"input",items:[
+  {t:"Le, la, l', les",en:"The definite articles",ref:"Textbook pp. 20, 27",instr:"Complete with the definite article.",type:"input",items:[
    {q:"J'aime ___ musique.",a:["la"]},{q:"Tu aimes ___ cinéma ?",a:["le"]},{q:"Elle aime ___ art.",a:["l'"]},
    {q:"Nous aimons ___ langues.",a:["les"]},{q:"J'aime aussi ___ histoire.",a:["l'"]},{q:"___ France",a:["la"]},
    {q:"___ Portugal",a:["le"]},{q:"___ États-Unis",a:["les"]},{q:"___ Mexique",a:["le"]},{q:"___ Italie",a:["l'"]}]},
-  {t:"À, au, en, aux",ref:"p. 25",instr:"Complete with the right preposition.",type:"choice",items:[
+  {t:"À, au, en, aux",en:"Prepositions with places",ref:"Textbook p. 25",instr:"Choose the right preposition.",type:"choice",items:[
    {q:"J'habite ___ Lisbonne.",opts:["à","au","en","aux"],a:"à"},
    {q:"J'habite ___ Portugal.",opts:["à","au","en","aux"],a:"au"},
    {q:"Le bureau est ___ Suède, à Göteborg.",opts:["à","au","en","aux"],a:"en"},
@@ -332,24 +354,24 @@ const FICHES=[
    {q:"Elle est née ___ Bruxelles.",opts:["à","au","en","aux"],a:"à"},
    {q:"Il habite ___ Canada.",opts:["à","au","en","aux"],a:"au"},
    {q:"Je suis né ___ Argentine.",opts:["à","au","en","aux"],a:"en"}]},
-  {t:"Quel, quelle, quels, quelles",ref:"p. 26",instr:"Complete with the right form of quel.",type:"input",items:[
+  {t:"Quel, quelle, quels, quelles",en:"Which, what",ref:"Textbook p. 26",instr:"Complete with the right form of quel.",type:"input",items:[
    {q:"___ est ton numéro de téléphone ?",a:["quel"]},
    {q:"Tu as ___ âge ?",a:["quel"]},
    {q:"Tu habites dans ___ ville ?",a:["quelle"]},
    {q:"Tu parles ___ langues ?",a:["quelles"]},
    {q:"Tu aimes ___ sports ?",a:["quels"]},
    {q:"___ est ta nationalité ?",a:["quelle"]}]},
-  {t:"Les nombres 32 à 100",ref:"p. 21, 27",instr:"Write the number in letters.",type:"input",items:[
+  {t:"Les nombres 32 à 100",en:"Numbers 32 to 100",ref:"Textbook pp. 21, 27",instr:"Write the number in words.",type:"input",items:[
    {q:"44 → ___",a:["quarante-quatre"]},{q:"61 → ___",a:["soixante et un"]},{q:"70 → ___",a:["soixante-dix"]},
    {q:"75 → ___",a:["soixante-quinze"]},{q:"80 → ___",a:["quatre-vingts"]},{q:"81 → ___",a:["quatre-vingt-un"]},
    {q:"92 → ___",a:["quatre-vingt-douze"]},{q:"99 → ___",a:["quatre-vingt-dix-neuf"]}]},
-  {t:"En français",ref:"p. 18 à 27",instr:"Translate.",type:"input",items:[
+  {t:"En français",en:"Translate into French",ref:"Textbook pp. 18–27",instr:"Translate.",type:"input",items:[
    {q:"I'm thirty years old. → ___",a:["j'ai trente ans","j'ai 30 ans"],long:1},
    {q:"What's your name? (tu) → ___",a:["comment tu t'appelles","tu t'appelles comment","comment t'appelles-tu"],long:1},
    {q:"I live in Lisbon, in Portugal. → ___",a:["j'habite à lisbonne au portugal"],long:1},
    {q:"I like music and cinema. → ___",a:["j'aime la musique et le cinéma"],long:1},
    {q:"Read out: chefen@gmail.com → ___",a:["chefen arobase gmail point com"],long:1}]},
-  {t:"À vous !",ref:"Production écrite · DELF",instr:"You are signing up to a language-exchange app. Introduce yourself: name, nationality, age, where you live, languages, likes. 40 words minimum.",type:"write",min:40,model:"Bonjour ! Je m'appelle Chefen. J'ai trente ans et j'habite à Lisbonne, au Portugal. Je travaille dans la logistique. Je parle anglais et un peu portugais. J'apprends le français. J'aime la musique, le cinéma et le sport. Et toi, tu parles quelles langues ?"}
+  {t:"À vous !",en:"Your turn",ref:"Writing · DELF practice",instr:"You are signing up to a language-exchange app. Introduce yourself: name, nationality, age, where you live, languages, likes. 40 words minimum.",type:"write",min:40,model:"Bonjour ! Je m'appelle Chefen. J'ai trente ans et j'habite à Lisbonne, au Portugal. Je travaille dans la logistique. Je parle anglais et un peu portugais. J'apprends le français. J'aime la musique, le cinéma et le sport. Et toi, tu parles quelles langues ?"}
  ]}
 ];
 
@@ -359,66 +381,71 @@ try{Object.assign(S,JSON.parse(localStorage.getItem("carnet")||"{}"))}catch(e){}
 const save=()=>{try{localStorage.setItem("carnet",JSON.stringify(S))}catch(e){}};
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const TABS=[["cours","Mon cours"],["grammaire","Grammaire"],["verbes","Verbes"],["phrases","Phrases"],["vocab","Vocabulaire"],["fiches","Fiches"]];
+const B=(fr,en)=>`${esc(fr)}<span class="enl">${esc(en)}</span>`;
+const EB=(fr,en)=>`<div class="eyebrow">${esc(fr)} <span class="inline-en">· ${esc(en)}</span></div>`;
+const head=(fr,en,lede)=>`<header><h1>${esc(fr)}</h1><p class="h1en">${esc(en)}</p>${lede?`<p class="lede">${lede}</p>`:""}</header>`;
+const TABS=[["cours","Mon cours","My course"],["grammaire","Grammaire","Grammar"],["verbes","Verbes","Verbs"],["phrases","Phrases","Phrases"],["vocab","Vocabulaire","Vocabulary"],["fiches","Fiches","Worksheets"]];
 
 function tabs(){
-  $("#tabs").innerHTML=TABS.map(([k,l])=>`<button class="tab" role="tab" aria-selected="${S.tab===k}" data-k="${k}">${l}</button>`).join("");
+  $("#tabs").innerHTML=TABS.map(([k,fr,en])=>`<button class="tab" role="tab" aria-selected="${S.tab===k}" data-k="${k}">${fr}<small>${en}</small></button>`).join("");
   document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>go(b.dataset.k));
 }
 function go(k,anchor){S.tab=k;save();render();if(anchor){const el=document.getElementById(anchor);if(el){el.scrollIntoView({block:"start"});return}}window.scrollTo(0,0)}
-const utag=u=>u==null?"":`<span class="tag muted">Unité ${u}</span>`;
+const utag=u=>u==null?"":`<span class="tag muted">Unité ${u} · unit ${u}</span>`;
+const pairList=l=>l.map(([fr,en])=>`${esc(fr)} <i>(${esc(en)})</i>`).join(" · ");
 
 /* views */
 function vCours(){
-  return `<header><h1>Carnet de français</h1><p class="lede">Your companion to Édito A1. Find a unit, review the rules, then do its worksheet. Page numbers point to your textbook.</p></header>
-  <div class="units">${UNITS.map(u=>{
+  return head("Carnet de français","French notebook","Your companion to Édito A1. Find a unit, review the rules, then do its worksheet. Page numbers point to your textbook.")+
+  `<div class="units">${UNITS.map(u=>{
     const now=u.n===S.unit;
-    const links=[u.sheet?`<button class="linkbtn" data-go="fiches" data-f="${u.sheet}">Fiche ${u.n}</button>`:"",
-      u.gr?`<button class="linkbtn" data-go="grammaire" data-a="u${u.n}g">Grammaire</button>`:"",
-      u.vo?`<button class="linkbtn" data-go="vocab" data-a="u${u.n}v">Vocabulaire</button>`:"",
+    const links=[u.sheet?`<button class="linkbtn" data-go="fiches" data-f="${u.sheet}">Worksheet ${u.n}</button>`:"",
+      u.gr?`<button class="linkbtn" data-go="grammaire" data-a="u${u.n}g">Grammar</button>`:"",
+      u.vo?`<button class="linkbtn" data-go="vocab" data-a="u${u.n}v">Vocabulary</button>`:"",
       u.ph?`<button class="linkbtn" data-go="phrases" data-a="u${u.n}p">Phrases</button>`:""].join("");
     return `<div class="unit${now?" now":""}"><div class="n">${u.n}</div><div style="min-width:0">
-      <div class="t"><h3>${esc(u.t)}</h3><span class="pg">p. ${u.p}</span>${now?`<span class="tag">You are here</span>`:`<button class="setnow" data-u="${u.n}">I'm on this unit</button>`}</div>
-      <div class="rows"><div><b>Grammaire</b>${u.g.map(esc).join(" · ")}</div><div><b>Vocabulaire</b>${u.v.map(esc).join(" · ")}</div>${u.verbs.length?`<div><b>Verbes</b>${u.verbs.join(", ")}</div>`:""}</div>
-      ${links?`<div class="links">${links}</div>`:`<div class="pg" style="margin-top:6px">Worksheet and notes added when you reach this unit.</div>`}
+      <div class="t"><h3>${esc(u.t)}</h3><span class="ten">${esc(u.en)}</span><span class="pg">p. ${u.p}</span>${now?`<span class="tag">You are here</span>`:`<button class="setnow" data-u="${u.n}">I'm on this unit</button>`}</div>
+      <div class="rows"><div><b>Grammaire <span>· grammar</span></b>${pairList(u.g)}</div><div><b>Vocabulaire <span>· vocabulary</span></b>${pairList(u.v)}</div>${u.verbs.length?`<div><b>Verbes <span>· verbs</span></b>${u.verbs.join(", ")}</div>`:""}</div>
+      ${links?`<div class="links">${links}</div>`:`<div class="pg" style="margin-top:6px">Worksheet and notes are added when you reach this unit.</div>`}
     </div></div>`}).join("")}</div>`;
 }
 function grouped(list,suffix,renderItem){
   const us=[...new Set(list.map(x=>x.u))];
-  return us.map(u=>`<section id="u${u}${suffix}" style="display:grid;gap:12px;scroll-margin-top:70px"><div class="eyebrow">Unité ${u} · ${esc(UNITS[u].t)}</div><div class="grid">${list.filter(x=>x.u===u).map(renderItem).join("")}</div></section>`).join("");
+  return us.map(u=>`<section id="u${u}${suffix}" style="display:grid;gap:12px;scroll-margin-top:80px">${EB("Unité "+u+" · "+UNITS[u].t,"Unit "+u+", "+UNITS[u].en)}<div class="grid">${list.filter(x=>x.u===u).map(renderItem).join("")}</div></section>`).join("");
 }
 function vGrammaire(){
-  return `<header><h1>Grammaire</h1><p class="lede">One card per rule, in the order your book teaches them.</p></header>`+
-   grouped(GR,"g",g=>`<div class="card"><h3>${esc(g.t)}</h3>${g.lv?`<p style="margin:0 0 6px"><span class="tag muted">Preview, taught later</span></p>`:""}${g.h}</div>`);
+  return head("Grammaire","Grammar","One card per rule, in the order your book teaches them.")+
+   grouped(GR,"g",g=>`<div class="card"><h3>${esc(g.t)}${g.lv?` <span class="tag muted" style="margin-left:6px">Preview</span>`:""}<span class="enl">${esc(g.en)}${g.lv?". Taught later in the book.":""}</span></h3>${g.h}</div>`);
 }
-function rows(r,cols){return `<table>${r.map(([a,b])=>`<tr><td class="f">${esc(a)}</td><td class="en">${esc(b)}</td></tr>`).join("")}</table>`}
+function rows(r){return `<table>${r.map(([a,b])=>`<tr><td class="f">${esc(a)}</td><td class="en">${esc(b)}</td></tr>`).join("")}</table>`}
 function vPhrases(){
-  return `<header><h1>Phrases</h1><p class="lede">Ready-to-use sentences, grouped by situation.</p></header>`+
-   grouped(PH,"p",p=>`<div class="card"><h3>${esc(p.t)}</h3>${rows(p.r)}</div>`);
+  return head("Phrases","Phrases","Ready-to-use sentences, grouped by situation.")+
+   grouped(PH,"p",p=>`<div class="card"><h3>${B(p.t,p.en)}</h3>${rows(p.r)}</div>`);
 }
 function vVocab(){
-  return `<header><h1>Vocabulaire</h1><p class="lede">Word lists by topic. (m.) and (f.) mark masculine and feminine.</p></header>`+
-   grouped(VO,"v",v=>`<div class="card"${v.r.length>15?' style="grid-column:1/-1"':""}><h3>${esc(v.t)}</h3>${v.r.length>15?`<div class="cols2">${v.r.map(([a,b])=>`<div style="display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding:5px 0"><span class="fr">${esc(a)}</span><span class="en" style="color:var(--muted);font-size:13.5px">${esc(b)}</span></div>`).join("")}</div>`:rows(v.r)}${v.note?`<p class="note">${esc(v.note)}</p>`:""}</div>`);
+  return head("Vocabulaire","Vocabulary","Word lists by topic. (m.) and (f.) mark masculine and feminine.")+
+   grouped(VO,"v",v=>`<div class="card${v.wide?" wide":""}"><h3>${B(v.t,v.en)}</h3>${v.wide?`<div class="cols2">${v.r.map(([a,b])=>`<div style="display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding:5px 0"><span class="fr">${esc(a)}</span><span style="color:var(--muted);font-size:13.5px;text-align:right">${esc(b)}</span></div>`).join("")}</div>`:rows(v.r)}${v.note?`<p class="note">${esc(v.note)}</p>`:""}</div>`);
 }
 const pron=(i,f)=>i===0&&/^[aeiouyhéèêâîôû]/i.test(f)?"j'":PERSONS[i];
 function vVerbes(){
-  const head=`<header><h1>Verbes</h1><p class="lede">${V.length} verbs in six tenses. The tag shows the unit where your book introduces each one. At A1, focus on the présent, then the passé composé from Unit 7.</p></header>
+  const top=head("Verbes","Verbs",`${V.length} verbs in six tenses. The tag shows the unit where your book introduces each one. At A1, focus on the présent, then the passé composé from Unit 7.`)+`
   <div class="toggle" role="group" aria-label="View"><button id="vm-verb" aria-pressed="${S.vmode==="verb"}">By verb</button><button id="vm-tense" aria-pressed="${S.vmode==="tense"}">By tense</button></div>`;
   let pick,body;
   if(S.vmode==="verb"){
     const x=V[S.vi]||V[0];
-    pick=`<div class="chips">${V.map((y,i)=>`<button class="chip${y.irr?" irr":""}" aria-pressed="${i===S.vi}" data-vi="${i}">${esc(y.v)}</button>`).join("")}</div>`;
-    body=`<div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px"><h2 style="font-size:32px">${esc(x.v)}</h2><span style="font-size:16px">${esc(x.g)}</span><span class="tag${x.irr?" irr":""}">${x.irr?"irregular":"regular"}</span>${utag(x.u)}</div>
-    <div style="display:flex;flex-wrap:wrap;gap:6px 20px;font-size:14px;color:var(--muted)"><span>Past participle: <b style="color:var(--fg)">${x.pp}</b>${x.note?` (${x.note})`:""}</span><span>Passé composé with: <b style="color:var(--fg)">${x.aux}</b></span></div>
-    <p style="margin:0;font-size:14px;color:var(--muted)">e.g. <i style="color:var(--fg)">${esc(x.ex)}</i></p>
-    <div class="grid">${TENSES.map(([k,n,u])=>`<div class="card"><h3>${n}</h3><p style="margin:0 0 8px;font-size:12.5px;color:var(--muted)">${u}</p><table>${PERSONS.map((p,i)=>`<tr><td class="p">${pron(i,x[k][i])}</td><td class="f">${x[k][i]}</td></tr>`).join("")}</table></div>`).join("")}</div>`;
+    pick=`<div class="chips">${V.map((y,i)=>`<button class="chip${y.irr?" irr":""}" aria-pressed="${i===S.vi}" data-vi="${i}">${esc(y.v)}</button>`).join("")}</div>
+    <p class="note" style="margin:0">Irregular verbs are shown in <span style="color:var(--irr);font-weight:600">${"ochre"}</span>.</p>`;
+    body=`<div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px"><h2 style="font-size:32px">${esc(x.v)}</h2><span style="font-size:16px">${esc(x.g)}</span><span class="tag${x.irr?" irr":""}">${x.irr?"irrégulier · irregular":"régulier · regular"}</span>${utag(x.u)}</div>
+    <table style="width:auto"><tr>${RL("Participe passé","past participle")}<td class="f">${x.pp}${x.note?` <span class="en" style="font-weight:400">(${x.note})</span>`:""}</td></tr><tr>${RL("Auxiliaire","helper verb in the passé composé")}<td class="f">${x.aux}</td></tr></table>
+    <div class="card" style="padding:12px 16px">${EB("Exemple","Example")}<p style="margin:4px 0 0"><span class="fr">${esc(x.ex)}</span><span class="tr">${esc(x.exen)}</span></p></div>
+    <div class="grid">${TENSES.map(([k,n,en,u])=>`<div class="card"><h3>${B(n,en)}</h3><p style="margin:0 0 8px;font-size:12.5px;color:var(--muted)">${u}</p><table>${PERSONS.map((p,i)=>`<tr><td class="p">${pron(i,x[k][i])}</td><td class="f">${x[k][i]}</td></tr>`).join("")}</table></div>`).join("")}</div>`;
   }else{
-    const [k,n,u]=TENSES[S.ti];
-    pick=`<div class="chips">${TENSES.map((t,i)=>`<button class="chip" aria-pressed="${i===S.ti}" data-ti="${i}">${t[1]}</button>`).join("")}</div>`;
-    body=`<div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px"><h2 style="font-size:32px">${n}</h2><span>${u}</span></div>
-    <div class="scroll"><table class="wide"><thead><tr><th>Verb</th>${PERSONS.map(p=>`<th>${p}</th>`).join("")}</tr></thead><tbody>${V.map(x=>`<tr><td${x.irr?` style="color:var(--irr)"`:""}>${esc(x.v)}</td>${x[k].map((f,i)=>`<td>${i===0&&pron(0,f)==="j'"?"j'"+f:f}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+    const [k,n,en,u]=TENSES[S.ti];
+    pick=`<div class="chips">${TENSES.map((t,i)=>`<button class="chip" aria-pressed="${i===S.ti}" data-ti="${i}">${t[1]}<small>${t[2]}</small></button>`).join("")}</div>`;
+    body=`<div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px"><h2 style="font-size:32px">${n}</h2><span style="font-size:16px">${en}</span><span style="color:var(--muted)">${u}</span></div>
+    <div class="scroll"><table class="wide"><thead><tr>${TH("Verbe","verb")}${PERSONS.map(p=>`<th>${p}</th>`).join("")}</tr></thead><tbody>${V.map(x=>`<tr><td${x.irr?` style="color:var(--irr)"`:""}>${esc(x.v)}</td>${x[k].map((f,i)=>`<td>${i===0&&pron(0,f)==="j'"?"j'"+f:f}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
   }
-  return head+pick+`<section style="display:grid;gap:14px">${body}</section>`;
+  return top+pick+`<section style="display:grid;gap:14px">${body}</section>`;
 }
 
 /* worksheets */
@@ -434,7 +461,7 @@ function grade(val,answers){
 function vFiches(){
   const f=FICHES.find(x=>x.id===S.fiche)||FICHES[0];
   const a=S.ans[f.id]||{};
-  const pick=`<div class="chips">${FICHES.map(x=>`<button class="chip" aria-pressed="${x.id===f.id}" data-f="${x.id}">${esc(x.t)}</button>`).join("")}</div>`;
+  const pick=`<div class="chips">${FICHES.map(x=>`<button class="chip" aria-pressed="${x.id===f.id}" data-f="${x.id}">${esc(x.t)}<small>${esc(x.en)}</small></button>`).join("")}</div>`;
   const exos=f.exos.map((e,ei)=>{
     const key=k=>`${ei}.${k}`;
     const st=a["chk"+ei], show=a["sol"+ei];
@@ -453,15 +480,15 @@ function vFiches(){
         return `<li><div class="q">${parts.length>1?parts[0]+"<b>___</b>"+parts[1]:parts[0]} ${opts}</div></li>`}).join("")}</ol>`;
     }else{
       const val=a[key("w")]||""; const wc=val.trim()?val.trim().split(/\s+/).length:0;
-      inner=`<textarea id="t-${f.id}-${ei}" data-k="${key("w")}" aria-label="Your text">${esc(val)}</textarea><div class="wc" id="wc-${ei}">${wc} words${e.min?` · aim for ${e.min}+`:""}</div>${show?`<div class="model"><div class="eyebrow" style="margin-bottom:4px">Model answer</div>${esc(e.model)}</div>`:""}`;
+      inner=`<textarea id="t-${f.id}-${ei}" data-k="${key("w")}" aria-label="Your text">${esc(val)}</textarea><div class="wc" id="wc-${ei}">${wc} words${e.min?` · aim for ${e.min}+`:""}</div>${show?`<div class="model">${EB("Modèle","Model answer")}<div style="margin-top:4px">${esc(e.model)}</div></div>`:""}`;
     }
     const acts=e.type==="write"
-      ?`<button class="btn ghost" data-sol="${ei}">${show?"Hide model":"Show a model answer"}</button>`
+      ?`<button class="btn ghost" data-sol="${ei}">${show?"Hide model answer":"Show a model answer"}</button>`
       :`<button class="btn" data-chk="${ei}">Check</button><button class="btn ghost" data-sol="${ei}">${show?"Hide answers":"Show answers"}</button><button class="btn ghost" data-clr="${ei}">Clear</button>`;
-    return `<section class="exo"><div class="hd"><h3>${ei+1}. ${esc(e.t)}</h3><span class="ref">${esc(e.ref)}</span></div><p class="instr">${esc(e.instr)}</p>${inner}<div class="actions">${acts}</div></section>`;
+    return `<section class="exo"><div class="hd"><h3>${ei+1}. ${B(e.t,e.en)}</h3><span class="ref">${esc(e.ref)}</span></div><p class="instr">${esc(e.instr)}</p>${inner}<div class="actions">${acts}</div></section>`;
   }).join("");
-  return `<header><h1>Fiches</h1><p class="lede">Practice for each unit, built from your textbook. Your answers stay on this device. Accents count, but a missing one is flagged rather than marked wrong.</p></header>${pick}
-  <div class="eyebrow">${esc(f.ref)}</div><div class="sheet">${exos}</div>`;
+  return head("Fiches","Worksheets","Practice for each unit, built from your textbook. Your answers stay on this device. Accents count, but a missing one is flagged rather than marked wrong.")+`${pick}
+  <p class="lede" style="margin:0">${esc(f.ref)}</p><div class="sheet">${exos}</div>`;
 }
 
 function render(){
